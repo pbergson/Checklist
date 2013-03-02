@@ -6,7 +6,7 @@
 
 @interface PBListModel : NSObject
 
-@property (strong, nonatomic) NSMutableArray *listArray;
+@property (strong, nonatomic) NSArray *listArray;
 @property (strong, nonatomic) NSString *listTitle;
 
 -(id)initWithDictionary:(NSDictionary *)dictionary;

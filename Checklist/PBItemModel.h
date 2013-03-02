@@ -6,7 +6,7 @@
 @property (strong, nonatomic) NSString *itemTitle;
 @property BOOL checkedStatus;
 
--(id)initWithDictionary:(NSMutableDictionary *)dictionary;
+-(id)initWithDictionary:(NSDictionary *)dictionary;
 -(NSDictionary *)objectForSerialization;
 
 @end

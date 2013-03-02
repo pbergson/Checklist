@@ -8,7 +8,7 @@
 
 @implementation PBItemModel
 
--(id)initWithDictionary:(NSMutableDictionary *)dictionary{
+-(id)initWithDictionary:(NSDictionary *)dictionary{
   self = [super init];
   
   [self setItemTitle:[dictionary valueForKey:@"Title"]];
