@@ -25,7 +25,7 @@
 }
 
 +(PBItemModel *)blankItemModel{
-  NSDictionary *blankDictionary = [[NSDictionary alloc] init];
+  NSMutableDictionary *blankDictionary = [[NSMutableDictionary alloc] init];
   [blankDictionary setValue:@"" forKey:@"Title"];
   [blankDictionary setValue:[NSNumber numberWithBool:NO] forKey:@"CheckedStatus"];
   PBItemModel *blankModel = [[PBItemModel alloc] initWithDictionary:blankDictionary];
