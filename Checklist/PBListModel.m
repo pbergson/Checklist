@@ -10,6 +10,13 @@
 
 @implementation PBListModel
 
++(PBListModel *)blankListModel{
+  NSMutableDictionary *blankDictionary = [[NSMutableDictionary alloc] init];
+  [blankDictionary setValue:@"" forKey:@"Name"];
+  [blankDictionary setValue:@[] forKey:@"Items"];
+  return [[PBListModel alloc] initWithDictionary:blankDictionary];
+}
+
 -(id)initWithDictionary:(NSDictionary *)dictionary{
   self = [super init];
   if (self){
@@ -63,15 +70,11 @@
 }
 
 -(void)addNewItem{
-  //???: This totally works. But it would be more clear (and DRY) if you added a class method like: «[PBItemModel blankItem]» and called that instead of making the blank dictionary here.
+  PBItemModel *newItemModel = [[PBItemModel class] blankItemModel];
   NSMutableArray *mutableListArray = [[self listArray] mutableCopy];
-  NSMutableDictionary *blankDictionary = [[NSMutableDictionary alloc] init];
-  [blankDictionary setValue:@"" forKey:@"Title"];
-  [blankDictionary setValue:[NSNumber numberWithBool:NO] forKey:@"CheckedStatus"];
-  PBItemModel *newItemModel = [[PBItemModel alloc] initWithDictionary:blankDictionary];
-
   [mutableListArray addObject:newItemModel];
   [[NSNotificationCenter defaultCenter] postNotificationName:PBModelDidChangeNotification object:self];
+  [self setListArray:mutableListArray];
 }
 
 -(void)moveObjectAtIndex:(NSInteger)sourceIndex toIndex:(NSInteger)destinationIndex{
@@ -80,6 +83,7 @@
   [mutableListArray removeObjectAtIndex:sourceIndex];
   [mutableListArray insertObject:itemToMove atIndex:destinationIndex];
   [[NSNotificationCenter defaultCenter] postNotificationName:PBModelDidChangeNotification object:self];
+  [self setListArray:mutableListArray];
 }
 
 -(void)resetCheckedStatus{

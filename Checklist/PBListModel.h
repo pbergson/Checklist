@@ -9,6 +9,8 @@
 @property (strong, nonatomic) NSArray *listArray;
 @property (strong, nonatomic) NSString *listTitle;
 
++(PBListModel *)blankListModel;
+
 -(id)initWithDictionary:(NSDictionary *)dictionary;
 -(NSDictionary *)objectForSerialization;
 

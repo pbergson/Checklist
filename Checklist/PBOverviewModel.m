@@ -71,12 +71,7 @@
 }
 
 -(void)addNewList{
-  //???: It'd be cleaner to have a class method that took care of this. Like: «[PBListModel blankList]».
-  NSMutableDictionary *blankDictionary = [[NSMutableDictionary alloc] init];
-  [blankDictionary setValue:@"" forKey:@"Name"];
-  NSMutableArray *blankArray = [[NSMutableArray alloc] init];
-  [blankDictionary setValue:blankArray forKey:@"Items"];
-  PBListModel *newItemListModel = [[PBListModel alloc] initWithDictionary:blankDictionary];
+  PBListModel *newItemListModel = [[PBListModel class] blankListModel];
   [[self overviewArray] addObject:newItemListModel];
   [[NSNotificationCenter defaultCenter] postNotificationName:PBModelDidChangeNotification object:self];
 }
